@@ -6,6 +6,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
         <title>Test Picture Tag</title>
         <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+        <style type="text/css">
+            img {
+                max-width: 100%;
+            }
+        </style>
     </head>
     <body class="app">
         <div class="container">
@@ -15,6 +20,23 @@
                 <source srcset="https://placeholdit.imgix.net/~text?txtsize=33&txt=940%C3%97150&w=940&h=150" media="(max-width: 1199px)">
                 <img src="https://placeholdit.imgix.net/~text?txtsize=33&txt=1140%C3%97150&w=1140&h=150">
             </picture>
+        </div>
+        <div class="container">
+            <ul>
+                <li>Android 4.1: KO</li>
+                <li>Android 4.3: OK</li>
+                <li>Android 4.4: OK</li>
+                <li>Android 5: OK</li>
+                <li>Android 6: OK</li>
+                <li>Internet Explorer (all versions): KO</li>
+                <li>EDGE (all versions): OK</li>
+                <li>Firefox 53: OK</li>
+                <li>Chrome 58: OK</li>
+                <li>Opera 45: OK</li>
+                <li>Safari 10: OK</li>
+                <li>iOS 9: KO</li>
+                <li>iOS 10: OK</li>
+            </ul>
         </div>
     </body>
 </html>
