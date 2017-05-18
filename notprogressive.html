@@ -1,0 +1,167 @@
+<main>
+
+    <article>
+
+        <h1>progressive-image.js demonstration</h1>
+
+        <p><code>progressive-image.js</code> implements a lazy-loading progressive image similar to those seen on <a href="https://code.facebook.com/posts/991252547593574/the-technology-behind-preview-photos/">Facebook</a> and <a href="https://jmperezperez.com/medium-image-progressive-loading-placeholder/">Medium</a>. A very small, blurred image is replaced with the full-resolution equivalent when the element is scrolled into view.</p>
+
+        <p>Please use the code as you wish - <a href="https://twitter.com/craigbuckler">tweet me @craigbuckler</a> if you find it useful. <a href="https://github.com/craigbuckler/progressive-image.js">Download from GitHub...</a></p>
+
+        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/123941/nature5.jpg" srcset="https://s3-us-west-2.amazonaws.com/s.cdpn.io/123941/nature5.jpg 800w, https://s3-us-west-2.amazonaws.com/s.cdpn.io/123941/nature5big.jpg 1600w" alt="palm trees" />
+
+        <p>Benefits:</p>
+
+        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/123941/nature2.jpg" class="" alt="sunset" />
+
+        <ul>
+            <li>fast loading, high performance, images loaded on view</li>
+            <li>supports any image type (JPEG photographs are most appropriate)</li>
+            <li>supports responsive images (<code>srcset</code> and <code>sizes</code> attributes)</li>
+            <li>small: 1,007 bytes of JavaScript, 463 bytes of CSS (minified)</li>
+            <li>any CSS reveal effect can be applied</li>
+            <li>no external dependencies - works with any framework</li>
+            <li>works in all modern browsers (IE10+)</li>
+            <li>progressively-enhanced to work in older browsers</li>
+            <li>easy to use</li>
+        </ul>
+
+        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/123941/nature3.jpg" class="" alt="tide" />
+
+        <p>The preview image can be very small - perhaps 20px in width and saved with high JPEG compression. This typically results in an image less than 500 bytes in size. It be added to the page directly or inlined as a data URI using base-64 encoding.</p>
+
+        <p>The large image can be any size but should match the preview image's aspect ratio. For example, 20x15 can be scaled to 200x150, 400x300 or 1600x1200.</p>
+
+        <h2>Basic example</h2>
+
+        <p>The page must load the CSS and JavaScript. It can be placed anywhere on the page but, typically, the CSS is loaded in the <code>&lt;head&gt;</code> and the JS is loaded just before the closing <code>&lt;/body&gt;</code> tag:</p>
+
+        <pre><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;css/progressive-image.min.css&quot;&gt;
+&lt;script src=&quot;js/progressive-image.min.js&quot;&gt;&lt;/script&gt;</code></pre>
+
+        <p>The simplest progressive image is a link to the full-size graphic around the preview. Note the <code>progressive</code> and <code>replace</code> classes on the link and the <code>preview</code> class on the image.</p>
+
+        <pre><code>&lt;a href=&quot;full.jpg&quot; class=&quot;progressive replace&quot;&gt;
+  &lt;img src=&quot;tiny.jpg&quot; class=&quot;preview&quot; alt=&quot;image&quot; /&gt;
+&lt;/a&gt;</code></pre>
+
+        <p>If image loading or JavaScript fails, a blurred version of the preview image can be clicked to view the full image:</p>
+
+        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/123941/people7.jpg" class="" alt="eyes" />
+
+        <p>When JavaScript runs successfully, the large image is revealed when the preview is scrolled into view. CSS3 effects are used to fade and zoom the image:</p>
+
+        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/123941/people7.jpg" class="" alt="eyes" />
+
+        <p>After replacement, the link click is disabled and resulting HTML will be:</p>
+
+        <pre><code>&lt;a href=&quot;full.jpg&quot; class=&quot;progressive&quot;&gt;
+  &lt;img src=&quot;full.jpg&quot; alt=&quot;image&quot; /&gt;
+&lt;/a&gt;</code></pre>
+
+        <h2>Responsive image example</h2>
+
+        <p><a href="https://www.sitepoint.com/how-to-build-responsive-images-with-srcset/">Responsive images</a> of differing sizes and resolutions can be defined in the link using the <code>data-srcset</code> and <code>data-sizes</code> attributes which map to the standard <code>srcset</code> and <code>sizes</code> attributes, e.g.</p>
+
+        <pre><code>&lt;a href=&quot;small.jpg&quot;
+  data-srcset=&quot;small.jpg 800w, large.jpg 1200w&quot;
+  data-sizes=&quot;100vw&quot;
+  class=&quot;progressive replace&quot;&gt;
+  &lt;img src=&quot;preview.jpg&quot; class=&quot;preview&quot; alt=&quot;image&quot; /&gt;
+&lt;/a&gt;</code></pre>
+
+        <p><em>(carriage returns added to aid legibility)</em></p>
+
+        <p>On replacement, the image code is transformed to:</p>
+
+        <pre><code>&lt;img src=&quot;small.jpg&quot;
+srcset=&quot;small.jpg 800w, large.jpg 1200w&quot;
+sizes=&quot;100vw&quot;
+alt=&quot;image&quot; /&gt;</code></pre>
+
+        <p>Modern browsers will load large.jpg on screens of 800px width or greater.</p>
+
+        <h2>Usage notes</h2>
+
+        <ol>
+            <li>The preview and full-size images must have identical aspect ratios, e.g. 20x10 and 1200x600.</li>
+
+            <li>Only vertical scrolling is checked. All images in the horizontal plane will be loaded.</li>
+
+            <li>Progressive images dynamically added to the page using JavaScript will only be replaced when a scroll or resize event occurs.</li>
+
+            <li>You may be able to improve actual or perceived performance using <a href="https://css-tricks.com/data-uris/">data URIs to inline images</a> or <a href="http://daverupert.com/2015/12/intrinsic-placeholders-with-picture/">intrinsic placeholders</a>.</li>
+
+            <li>Firefox can struggle when replacing large images and show a noticeable flicker.</li>
+        </ol>
+
+        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/123941/city5.jpg"
+             srcset="https://s3-us-west-2.amazonaws.com/s.cdpn.io/123941/city5.jpg 500w, https://s3-us-west-2.amazonaws.com/s.cdpn.io/123941/city5big.jpg 1000w, https://s3-us-west-2.amazonaws.com/s.cdpn.io/123941/city5biggest.jpg 1500w"
+             class="" alt="city" />
+
+    </article>
+
+</main>
+
+<style>
+    /* main styles */
+    *, *:before, *:after {
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+    }
+
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+        font-size: 100%;
+        color: #444;
+        background-color: #fff;
+        overflow-x: hidden;
+        overflow-y: scroll;
+    }
+
+    article {
+        max-width: 40em;
+        padding: 0 4em;
+        margin: 0 auto;
+    }
+
+    h1, h2 {
+        font-weight: normal;
+        margin-top: 1em;
+    }
+
+    p, a {
+        margin-top: 1em;
+    }
+
+    h2 + p {
+        margin-top: 0;
+    }
+
+    ul, ol {
+        margin: 1em 0 0 2em;
+    }
+
+    li {
+        margin-top: 0.5em;
+    }
+
+    pre {
+        white-space: pre;
+        padding: 2px 6px;
+        margin-top: 1em;
+        background-color: #ddd;
+        border-radius: 3px;
+        overflow: auto;
+    }
+
+    code {
+        font-size: 1.1em;
+    }
+
+    img {
+        max-width: 100%;
+    }
+
+</style>
