@@ -1,0 +1,17 @@
+{
+  "name": "test-picture-tag",
+  "description": "",
+  "main": "index.html",
+  "authors": [
+    "Kevin Avrillon <kavrillon@leadformance.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/kavrillon/test-picture-tag",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

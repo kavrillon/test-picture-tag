@@ -1,0 +1,19 @@
+{
+  "name": "test-picture-tag",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kavrillon/test-picture-tag.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kavrillon/test-picture-tag/issues"
+  },
+  "homepage": "https://github.com/kavrillon/test-picture-tag#readme"
+}
